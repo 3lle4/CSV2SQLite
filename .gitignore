@@ -1,13 +1,13 @@
 # libraries/packages
-libcsv/**
-sqlite/**
+lib/**
 
 # test files
 tutorial/**
 
-# data
-data/**
-
+# executables
 a.out
+compile
+
+README.md
 
 
