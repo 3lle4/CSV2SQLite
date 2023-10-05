@@ -1,12 +1,13 @@
-# libraries/packages
-lib/**
+# libraries and data
+data/**
+sqlite/**
 
 # test files
 tutorial/**
 
 # executables
 a.out
-compile
+
 
 README.md
 
