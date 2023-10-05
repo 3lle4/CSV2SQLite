@@ -5,4 +5,9 @@ sqlite/**
 # test files
 tutorial/**
 
+# data
+data/**
+
+a.out
+
 
