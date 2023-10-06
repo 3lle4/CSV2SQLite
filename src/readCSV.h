@@ -1,7 +1,4 @@
-#ifndef CSV_PARSER_H
-#define CSV_PARSER_H
-
-// Define a struct to store CSV data
+// struct to store CSV data
 typedef struct CSVData {
     char ***fields;
     int rowCount;
@@ -13,5 +10,3 @@ CSVData *readCSV(const char *filename, char separator);
 
 // Function to free the allocated memory in CSVData
 void freeCSVData(CSVData *data);
-
-#endif

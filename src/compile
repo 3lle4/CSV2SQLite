@@ -1,0 +1,24 @@
+OPTIONS="-std=c2x -Wall -Wimplicit-fallthrough -Wpedantic"
+LIBS="-lsqlite3"
+
+INFILE=$1
+OUTFILE="${INFILE%%.*}"
+
+clear
+
+rm -f $OUTFILE
+echo ==================================
+echo attempting to compile
+echo gcc $OPTIONS -o $OUTFILE $INFILE readCSV.c createDB.c $LIBS
+echo ..................................
+echo ""
+
+gcc $OPTIONS -o $OUTFILE $INFILE readCSV.c createDB.c $LIBS
+
+echo ""
+echo ..................................
+echo Compilation successful.
+echo ..................................
+echo ""
+
+./$OUTFILE
