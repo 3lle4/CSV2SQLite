@@ -52,6 +52,7 @@ Use the given code to create a database from a CSV file and explore it with the 
 
 
 ## Acknowledgements
+ - [C Tutorial on tutorialspoint.com](https://www.tutorialspoint.com/cprogramming/index.htm)
  - [SQLite Tutorial on tutorialspoint.com](https://www.tutorialspoint.com/sqlite/index.htm)
  - [SQLite Tutorial from zetcode.com](https://zetcode.com/db/sqlitec/)
  - [another SQLite Tutorial, algoLancer at YouTube](https://www.youtube.com/watch?v=-C5HSdPU3TI&t=286s)
