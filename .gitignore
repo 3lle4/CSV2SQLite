@@ -1,16 +1,8 @@
 # libraries and data
-data/**
-sqlite/**
-
-# test files
-tutorial/**
+# data/**  // remove if bigger
+# sqlite/**
+# db/**
 
 # executables
-a.out
-main.o
-readCSV.o
-
-
-README.md
-
-
+main
+./a.out
