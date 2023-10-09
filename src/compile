@@ -1,4 +1,4 @@
-OPTIONS="-std=c2x -Wall -Wimplicit-fallthrough -Wpedantic"
+OPTIONS="-std=c99 -Wall -Wimplicit-fallthrough -Wpedantic"
 LIBS="-lsqlite3"
 
 INFILE=$1
@@ -9,11 +9,11 @@ clear
 rm -f $OUTFILE
 echo ==================================
 echo attempting to compile
-echo gcc $OPTIONS -o $OUTFILE $INFILE readCSV.c createDB.c $LIBS
+echo gcc $OPTIONS -o $OUTFILE $INFILE readCSV.c DB_handling.c $LIBS
 echo ..................................
 echo ""
 
-gcc $OPTIONS -o $OUTFILE $INFILE readCSV.c createDB.c $LIBS
+gcc $OPTIONS -o $OUTFILE $INFILE readCSV.c DB_handling.c $LIBS
 
 echo ""
 echo ..................................
