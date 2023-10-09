@@ -4,5 +4,5 @@
 # db/**
 
 # executables
-main
-./a.out
+src/main
+src/a.out
