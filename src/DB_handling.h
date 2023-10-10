@@ -3,7 +3,7 @@
 // Header-file for the DB_handling module. 
 // The module holds functions to create or open SQLite database files and make new tables.
 // It takes CSVData objects and stores them in the db file and table.
-// Functions to work with the Database.
+// + Functions to work with the Database.
 
 #ifndef DBHANDLING_H // include guards to ensure that the header file is only compiled once
 #define DBHANDLING_H
