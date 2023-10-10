@@ -67,34 +67,34 @@ int main() {
             if (res_tb == 0) {
                 printf("Table created successfully!\n");
                 
-                printf("Inserting the data...\n");
+                printf("\nInserting the data...\n");
                 int res_insert = insertData(db_path, csv_struct, tb_name);
                 if (res_insert == 0) {
-                    printf("Data inserted successfully!\n");
+                    printf("\nData inserted successfully!\n");
                 } else {
-                    printf("Error when inserting data.\n");
+                    printf("\nError when inserting data.\n");
                     return 1;
                 }
             } else {
-                printf("Error creating the table.\n");
+                printf("\nError creating the table.\n");
             }
         } else {
-            printf("Type in a valid path for your CSV!\n");
+            printf("\nType in a valid path for your CSV!\n");
         }
         free(csv_path);
     }
 
     if (res_db == 0 && res_tb == 0) {
-        printf("Successfully opend the database and created the table!\n");
+        printf("\nSuccessfully opend the database and created the table!\n");
     }
     
     // demo of casting a column's datatype
     int res_cast = castColumnDataType(db_path, tb_name, "year", 'I');
     
     if (res_cast == 0) {
-        printf("Column %s in table %s successfully cast to %s\n", "year", tb_name, "INTEGER");
+        printf("\nColumn %s in table %s successfully cast to %s\n", "year", tb_name, "INTEGER");
     } else {
-        printf("Failed to cast column %s to %s\n", "year", "INTEGER");
+        printf("\nFailed to cast column %s to %s\n", "year", "INTEGER");
     }
 
     printf("\nNow lets work with the database:\nIn which table do you want to search? ");
@@ -107,8 +107,8 @@ int main() {
         printf("\nType the column you want to search (or type 'exit' to quit): ");
         scanf(" %s", col_name);
 
-        if (strcmp(col_name, "exit") == 0) {
-            break; // Exit the loop and end the program if the user types 'exit'
+        if (strcmp(col_name, "exit") == 0) { // check if 'exit'
+            break; // Exit the loop and end program
         }
 
         printf("\nType the (string) value you want to search for: ");
@@ -121,7 +121,7 @@ int main() {
         }
     }
 
-    // Clean up
+    // clean up
     free(db_name);
     free(tb_name);
     free(db_path);
