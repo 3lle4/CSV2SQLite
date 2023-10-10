@@ -32,6 +32,7 @@ int newDB(char *db_name) {
     return 0;
 }
 
+// function to create a new table in an existing db
 int createTable(char *dbPath, CSVData *csvData, char *tableName) {
     sqlite3 *db;
     char *errMsg = 0;
@@ -64,8 +65,8 @@ int createTable(char *dbPath, CSVData *csvData, char *tableName) {
             strcat(sql, ", "); // add column names to SQL stmt, separated by ,
         }
 
-        char *cleanedColName = csvData->fields[0][n];
         // Remove double quotes from the column name if they exist to prevent empty col names
+        char *cleanedColName = csvData->fields[0][n];
         if (cleanedColName[0] == '"' && cleanedColName[strlen(cleanedColName) - 1] == '"') {
             cleanedColName[strlen(cleanedColName) - 1] = '\0';
             cleanedColName = &cleanedColName[1];
@@ -78,7 +79,7 @@ int createTable(char *dbPath, CSVData *csvData, char *tableName) {
     strcat(sql, ");");
 
     // Execute the SQL statement to create the table
-    rc = sqlite3_exec(db, sql, 0, 0, &errMsg);
+    rc = sqlite3_exec(db, sql, 0, 0, &errMsg); // 0, 0: params of callback function, not needed here
 
     if (rc != SQLITE_OK) {
         printf("SQL error: %s\n.", errMsg); // print error if one occurs
@@ -115,14 +116,14 @@ char *replaceSingleQuotes(char *input) { // neccessary bc SQLite uses single quo
     char *result = malloc(2 * len + 1);
 
     if (result == NULL) {
-        return NULL; // Memory allocation failed
+        return NULL;
     }
 
     int n = 0;
 
     for (int i = 0; i < len; i++) { // iterate through chars of str and replace ' with ''
         if (input[i] == '\'') {
-            result[n++] = '\'';
+            result[n++] = '\''; // add in two steps
             result[n++] = '\'';
         } else {
             result[n++] = input[i];
@@ -219,16 +220,16 @@ int insertData(char *dbPath, CSVData *csvData, char *tableName) {
 /**
  * Print the results of an SQL query.
  *
- * This function is used as a callback to print the results of an SQL query to the
- * standard output. It iterates through the columns and prints both column names
+ * This function is used to print the results of an SQL query. 
+ * It iterates through the columns and prints both column names
  * and their corresponding values for each row in the result set.
  *
- * @param data Unused data (can be NULL).
- * @param columns The number of columns in the result set.
- * @param columnValues An array of column values for the current row.
- * @param columnNames An array of column names.
+ * @param data input data
+ * @param columns The number of columns in the set
+ * @param columnValues array of column values for the current row
+ * @param columnNames an array of column names
  *
- * called by: searchInColumn()
+ * @called_from searchInColumn()
  */
 int printResults(void *data, int columns, char **columnValues, char **columnNames) {
     printf("Search results:\n");
@@ -281,10 +282,10 @@ void printColumnNames( char *dbPath, char *tableName) {
     }
 
     char query[100];
-    snprintf(query, sizeof(query), "PRAGMA table_info(%s);", tableName);
+    snprintf(query, sizeof(query), "PRAGMA table_info(%s);", tableName); //write formatted output to sized buffer (query)
 
     sqlite3_stmt *stmt;
-    rc = sqlite3_prepare_v2(db, query, -1, &stmt, 0);
+    rc = sqlite3_prepare_v2(db, query, -1, &stmt, 0); // compile the sql statement; last param is not needed
 
     if (rc != SQLITE_OK) {
         printf("SQL error: %s\n", sqlite3_errmsg(db));
@@ -293,7 +294,7 @@ void printColumnNames( char *dbPath, char *tableName) {
     }
 
     printf("\n");
-    while (sqlite3_step(stmt) == SQLITE_ROW) {
+    while (sqlite3_step(stmt) == SQLITE_ROW) { // iterate through the col names in the stmt and print them
         char *colName = (char *)sqlite3_column_text(stmt, 1);
         if (colName==NULL){
             continue;
@@ -302,8 +303,8 @@ void printColumnNames( char *dbPath, char *tableName) {
         }
     }
 
-    sqlite3_finalize(stmt);
-    sqlite3_close(db);
+    sqlite3_finalize(stmt); // destroy the stmt object
+    sqlite3_close(db); // close db
 }
 
 //function to cast a column's datatype
